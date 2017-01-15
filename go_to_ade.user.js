@@ -2,7 +2,7 @@
 // @name Go to ADE
 // @namespace go_to_ade.user.js
 // @description Ajoute un lien direct pour consulter son horaire sur ADE depuis les sites de l'UCL
-// @version 1.0
+// @version 1.1
 // @author DenisM
 // @updateURL https://raw.githubusercontent.com/Zibeline/Go-to-ADE-Userscript/master/go_to_ade.user.js
 // @homepage https://github.com/Zibeline/Go-to-ADE-Userscript
