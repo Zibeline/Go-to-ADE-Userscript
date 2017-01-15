@@ -31,7 +31,7 @@ var entries = {
 		course_list   : ".composant-corps table td",
 		attribute     : 'innerHTML',
 		link_position : "#onglets ul",
-		link_container: $('<li style="margin-left: 150px;"></li>')
+		link_container: $('<span style="margin-left: 150px; display: inline-block;"></span>')
 	},
 	moodle_cours: {
 		min_url       : 'moodleucl.uclouvain.be/course/view.php',
@@ -93,7 +93,8 @@ try {
 		'height': '16px',
 		'margin': '3px',
 		'border-radius': '1px',
-		'text-decoration': 'none'
+		'text-decoration': 'none',
+		'font-weight': 'normal'
 	});
 	
   	if (typeof(entry.link_container)!=='undefined') { // si il faut emballer le lien dans un élément, on le fais ici
