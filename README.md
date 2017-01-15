@@ -24,6 +24,10 @@ Pour l'instant, le script ajoute un lien sur les pages suivantes :
 
 Le lien sera ajouté en haut de la boite qui contient la liste des cours, sur base des codes de cours trouvés dans cette liste
 
+**Page d'accueil moodle** *(moodleucl.uclouvain.be/course/view.php)*
+
+Le lien est ajouté en haut de la page du cours
+
 **Page du bureau virtuel des cours d'une année** *(uclouvain.be/onglet_etudes.html?cmp=cmp_formations.html)*
 
 Le lien sera ajouté en haut de la page parmis les différents onglets.
@@ -86,4 +90,8 @@ Même si le script est fonctionnel, il reste encore quelques améliorations et e
 
 **V1.2**
 
-* Prendre en charge les pages d'un cours spécifique sur moodle
+* Prise en charge des pages d'un cours spécifique sur moodle
+
+**V1.3**
+
+* Mise en forme du lien vers ADE
