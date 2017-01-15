@@ -78,5 +78,12 @@ Le fonctionnement de ce script est assez simple.
 
 Même si le script est fonctionnel, il reste encore quelques améliorations et extensions a faire :
 
-* Prendre en charge les pages d'un cours spécifique sur moodle
 * Prendre en charge les pages sur le site UCL qui décrivent un cours (ou un programme d'études)
+* Mettre l'url ADE dans une variable pour pouvoir plus facilement adapter le code pour d'autres unifs
+* Mettre un `@include` générique pour tout l'ucl et verifier avant de rentrer dans le try si on est bien dans un des cas prévus dans les `entries`
+
+## Changelog
+
+**V1.2**
+
+* Prendre en charge les pages d'un cours spécifique sur moodle

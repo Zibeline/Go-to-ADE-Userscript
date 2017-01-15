@@ -2,7 +2,7 @@
 // @name Go to ADE
 // @namespace go_to_ade.user.js
 // @description Ajoute un lien direct pour consulter son horaire sur ADE depuis les sites de l'UCL
-// @version 1.2
+// @version 1.3
 // @author DenisM
 // @updateURL https://raw.githubusercontent.com/Zibeline/Go-to-ADE-Userscript/master/go_to_ade.user.js
 // @homepage https://github.com/Zibeline/Go-to-ADE-Userscript
@@ -10,6 +10,7 @@
 // @include        *://www.uclouvain.be/onglet_etudes.html?cmp=cmp_formations.html*
 // @include        *://moodleucl.uclouvain.be/course/view.php*
 // @grant        none
+// @icon https://github.com/Zibeline/Go-to-ADE-Userscript/blob/master/logo.png?raw=true
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // ==/UserScript==
 
@@ -81,8 +82,14 @@ try {
   	// On crée l'url vers ADE
 	var url = 'http://horairev6.uclouvain.be/direct/index.jsp?displayConfName=webEtudiant&showTree=false&showOptions=false&login='+ade.login+'&password='+ade.password+'&projectId=16&code='+liste;
   
-  	var link = $('<a href="'+url+'" target="_blank">Voir mes cours sur ADE</a>');
   
+  	var link = $('<a href="'+url+'" target="_blank"><img src="https://github.com/Zibeline/Go-to-ADE-Userscript/blob/master/logo.png?raw=true" width="13" height="13"> Voir sur ADE</a>').css({
+		'background-color': 'rgba(242, 103, 34, 0.5)',
+		'padding': '2px',
+		'margin': '3px',
+		'border-radius': '1px'
+	});
+	
   	if (typeof(entry.link_container)!=='undefined') { // si il faut emballer le lien dans un élément, on le fais ici
 		link = entry.link_container.append(link);
     }
