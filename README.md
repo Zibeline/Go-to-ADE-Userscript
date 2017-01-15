@@ -2,15 +2,25 @@
 
 Go to ADe est un Userscript qui permets d'ajouter un lien sur certains sites de l'UCL qui renvoie vers ADE pour directement consulter son horaire sur ADE.
 
+#Installation et utilisation
+
 ## Installation
 
 Pour l'installer, il suffit d'ajouter le script dans un gestionnaire de script utilisateur installé dans son navigateur.
+
+On trouve une liste de gestionnaires de script utilisateur ici : [https://greasyfork.org/en/help/installing-user-scripts] (pour ma part j'utilise ViolentMonkey et j'en suis très satisfait)
+
+Ensuite, il suffit de suivre ce lien et le gestionnaire de scripts utilisateur devrait vous proposer de l'installer.
+
+[https://raw.githubusercontent.com/Zibeline/Go-to-ADE-Userscript/master/go_to_ade.user.js]
+
+Si ce n'est pas le cas, vous pouvez l'installer "manuellement" en allant dans les paramètres du gestionnaire de script et y trouver un bouton du style "Install from URL" et y copier l'url pour l'installer.
 
 ## Sites actuellement supportés
 
 Pour l'instant, le script ajoute un lien sur les pages suivantes :
 
-###Page d'accueil moodle (moodleucl.uclouvain.be/my/)
+**Page d'accueil moodle** *([moodleucl.uclouvain.be/my/])*
 
 Le lien sera ajouté en haut de la boite qui contient la liste des cours, sur base des codes de cours trouvés dans cette liste
 
