@@ -2,12 +2,13 @@
 // @name Go to ADE
 // @namespace go_to_ade.user.js
 // @description Ajoute un lien direct pour consulter son horaire sur ADE depuis les sites de l'UCL
-// @version 1.1
+// @version 1.2
 // @author DenisM
 // @updateURL https://raw.githubusercontent.com/Zibeline/Go-to-ADE-Userscript/master/go_to_ade.user.js
 // @homepage https://github.com/Zibeline/Go-to-ADE-Userscript
 // @include        *://moodleucl.uclouvain.be/my/*
 // @include        *://www.uclouvain.be/onglet_etudes.html?cmp=cmp_formations.html*
+// @include        *://moodleucl.uclouvain.be/course/view.php*
 // @grant        none
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // ==/UserScript==
@@ -30,6 +31,12 @@ var entries = {
 		attribute     : 'innerHTML',
 		link_position : "#onglets ul",
 		link_container: $('<li style="margin-left: 150px;"></li>')
+	},
+	moodle_cours: {
+		min_url       : 'moodleucl.uclouvain.be/course/view.php',
+		course_list   : "title",
+		attribute     : 'innerHTML',
+		link_position : "#page-navbar"
 	}
 };
 
