@@ -83,9 +83,14 @@ try {
 	var url = 'http://horairev6.uclouvain.be/direct/index.jsp?displayConfName=webEtudiant&showTree=false&showOptions=false&login='+ade.login+'&password='+ade.password+'&projectId=16&code='+liste;
   
   
-  	var link = $('<a href="'+url+'" target="_blank"><img src="https://github.com/Zibeline/Go-to-ADE-Userscript/blob/master/logo.png?raw=true" width="13" height="13"> Voir sur ADE</a>').css({
+  	var link = $('<a href="'+url+'" target="_blank"><img src="https://github.com/Zibeline/Go-to-ADE-Userscript/blob/master/logo.png?raw=true" width="14" height="14" style="margin-right: 8px;"> Voir sur ADE</a>').css({
 		'background-color': 'rgba(242, 103, 34, 0.5)',
 		'padding': '2px',
+		'padding-left': '8px',
+		'padding-right': '8px',
+		'font-size': '14px',
+		'color': '#0c59a5',
+		'height': '16px',
 		'margin': '3px',
 		'border-radius': '1px'
 	});
