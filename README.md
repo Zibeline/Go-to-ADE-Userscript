@@ -95,3 +95,7 @@ Même si le script est fonctionnel, il reste encore quelques améliorations et e
 **V1.3**
 
 * Mise en forme du lien vers ADE
+
+**V2.0**
+
+* Prise en charge de la nouvelle plateforme de bureau virtuel de l'ucl

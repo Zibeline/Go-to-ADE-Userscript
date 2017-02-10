@@ -2,13 +2,14 @@
 // @name Go to ADE
 // @namespace go_to_ade.user.js
 // @description Ajoute un lien direct pour consulter son horaire sur ADE depuis les sites de l'UCL
-// @version 1.3
+// @version 2.0
 // @author DenisM
 // @updateURL https://raw.githubusercontent.com/Zibeline/Go-to-ADE-Userscript/master/go_to_ade.user.js
 // @homepage https://github.com/Zibeline/Go-to-ADE-Userscript
 // @include        *://moodleucl.uclouvain.be/my/*
 // @include        *://www.uclouvain.be/onglet_etudes.html?cmp=cmp_formations.html*
 // @include        *://moodleucl.uclouvain.be/course/view.php*
+// @include        *://studies.uclouvain.be/performance/result/*
 // @grant        none
 // @icon https://github.com/Zibeline/Go-to-ADE-Userscript/blob/master/logo.png?raw=true
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
@@ -38,6 +39,12 @@ var entries = {
 		course_list   : "title",
 		attribute     : 'innerHTML',
 		link_position : "#page-navbar"
+	},
+	studies: {
+		min_url       : 'studies.uclouvain.be/performance/result',
+		course_list   : "#table_courses td:first-child",
+		attribute     : 'innerHTML',
+		link_position : ".page-header.hidden-print"
 	}
 };
 
@@ -53,57 +60,59 @@ $.each(entries, function (key, entr) {
 	}
 });
 
-try {
-	var course_list = $(entry.course_list); // récupère la liste des elems qui contiennent chacun un code de cours
-	for (var i = 0; i < course_list.length; i++) { // parcours cette liste
-		var title = course_list[i][entry.attribute]; // récupère un string qui contient le code du cours
-		var code = ""; // contiendra le code du cours
-  
-      	// Essaie de récupérer le code du cours avec 5 lettres (LSINF1234)
-		var regex = /.*([A-Z]{5}[0-9]{4}).*/gi;
-		var arr = regex.exec(title);
-      
-		if (arr!=null) { // Si on a trouvé avec 5 lettres, on récupère le code
-			code = arr[1];
+$(function () {
+	try {
+		var course_list = $(entry.course_list); // récupère la liste des elems qui contiennent chacun un code de cours
+		for (var i = 0; i < course_list.length; i++) { // parcours cette liste
+			var title = course_list[i][entry.attribute]; // récupère un string qui contient le code du cours
+			var code = ""; // contiendra le code du cours
+	  
+			// Essaie de récupérer le code du cours avec 5 lettres (LSINF1234)
+			var regex = /.*([A-Z]{5}[0-9]{4}).*/gi;
+			var arr = regex.exec(title);
+		  
+			if (arr!=null) { // Si on a trouvé avec 5 lettres, on récupère le code
+				code = arr[1];
+			}
+			else { // Si on a pas trouvé avec 5 lettres
+				// On essaie avec 4 lettres
+				regex = /.*([A-Z]{4}[0-9]{4}).*/gi;
+				arr = regex.exec(title);
+				if (arr!=null) code = arr[1]; // Si on a trouvé avec 4 lettres, on récupère le code
+			}
+		  
+			if (code !="") { // Si on a trouvé un code (avec 4 ou 5 lettres)
+				if (liste!="") liste += ","; // on ajoute une virgule uniquement si il y a déjà un code devant
+				liste += code; // on ajoute le code dans la liste
+			}
 		}
-		else { // Si on a pas trouvé avec 5 lettres
-          	// On essaie avec 4 lettres
-			regex = /.*([A-Z]{4}[0-9]{4}).*/gi;
-			arr = regex.exec(title);
-			if (arr!=null) code = arr[1]; // Si on a trouvé avec 4 lettres, on récupère le code
-		}
-      
-		if (code !="") { // Si on a trouvé un code (avec 4 ou 5 lettres)
-			if (liste!="") liste += ","; // on ajoute une virgule uniquement si il y a déjà un code devant
-			liste += code; // on ajoute le code dans la liste
-		}
-	}
 
-  	// On crée l'url vers ADE
-	var url = 'http://horairev6.uclouvain.be/direct/index.jsp?displayConfName=webEtudiant&showTree=false&showOptions=false&login='+ade.login+'&password='+ade.password+'&projectId=16&code='+liste;
-  
-  
-  	var link = $('<a href="'+url+'" target="_blank"><img src="https://github.com/Zibeline/Go-to-ADE-Userscript/blob/master/logo.png?raw=true" width="13" height="13" style="margin-right: 8px; vertical-align: baseline;"> Voir sur ADE</a>').css({
-		'background-color': 'rgba(242, 103, 34, 0.5)',
-		'padding': '2px',
-		'padding-left': '8px',
-		'padding-right': '8px',
-		'font-size': '14px',
-		'color': '#0c59a5',
-		'height': '16px',
-		'margin': '3px',
-		'border-radius': '1px',
-		'text-decoration': 'none',
-		'font-weight': 'normal'
-	});
-	
-  	if (typeof(entry.link_container)!=='undefined') { // si il faut emballer le lien dans un élément, on le fais ici
-		link = entry.link_container.append(link);
-    }
-  	// On place un lien vers ADE
-	$(entry.link_position).append(link);
-	console.log("Go to ADE : a terminé sans erreurs =D");
-}
-catch(err) {
-	console.log("Go to ADE : ça a foiré :/");
-}
+		// On crée l'url vers ADE
+		var url = 'http://horairev6.uclouvain.be/direct/index.jsp?displayConfName=webEtudiant&showTree=false&showOptions=false&login='+ade.login+'&password='+ade.password+'&projectId=16&code='+liste;
+	  
+	  
+		var link = $('<a href="'+url+'" target="_blank"><img src="https://github.com/Zibeline/Go-to-ADE-Userscript/blob/master/logo.png?raw=true" width="13" height="13" style="margin-right: 8px; vertical-align: baseline;"> Voir sur ADE</a>').css({
+			'background-color': 'rgba(242, 103, 34, 0.5)',
+			'padding': '2px',
+			'padding-left': '8px',
+			'padding-right': '8px',
+			'font-size': '14px',
+			'color': '#0c59a5',
+			'height': '16px',
+			'margin': '3px',
+			'border-radius': '1px',
+			'text-decoration': 'none',
+			'font-weight': 'normal'
+		});
+		
+		if (typeof(entry.link_container)!=='undefined') { // si il faut emballer le lien dans un élément, on le fais ici
+			link = entry.link_container.append(link);
+		}
+		// On place un lien vers ADE
+		$(entry.link_position).append(link);
+		console.log("Go to ADE : a terminé sans erreurs =D");
+	}
+	catch(err) {
+		console.log("Go to ADE : ça a foiré :/");
+	}
+});
